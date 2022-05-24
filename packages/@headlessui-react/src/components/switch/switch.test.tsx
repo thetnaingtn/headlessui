@@ -21,43 +21,43 @@ describe('Safe guards', () => {
 })
 
 describe('Rendering', () => {
-  it('should be possible to render an (on) Switch using a render prop', () => {
+  it('should be possible to render an (on) Switch using a render prop', async () => {
     render(
       <Switch checked={true} onChange={console.log}>
         {({ checked }) => <span>{checked ? 'On' : 'Off'}</span>}
       </Switch>
     )
 
-    assertSwitch({ state: SwitchState.On, textContent: 'On' })
+    await assertSwitch({ state: SwitchState.On, textContent: 'On' })
   })
 
-  it('should be possible to render an (off) Switch using a render prop', () => {
+  it('should be possible to render an (off) Switch using a render prop', async () => {
     render(
       <Switch checked={false} onChange={console.log}>
         {({ checked }) => <span>{checked ? 'On' : 'Off'}</span>}
       </Switch>
     )
 
-    assertSwitch({ state: SwitchState.Off, textContent: 'Off' })
+    await assertSwitch({ state: SwitchState.Off, textContent: 'Off' })
   })
 
-  it('should be possible to render an (on) Switch using an `as` prop', () => {
+  it('should be possible to render an (on) Switch using an `as` prop', async () => {
     render(<Switch as="span" checked={true} onChange={console.log} />)
-    assertSwitch({ state: SwitchState.On, tag: 'span' })
+    await assertSwitch({ state: SwitchState.On, tag: 'span' })
   })
 
-  it('should be possible to render an (off) Switch using an `as` prop', () => {
+  it('should be possible to render an (off) Switch using an `as` prop', async () => {
     render(<Switch as="span" checked={false} onChange={console.log} />)
-    assertSwitch({ state: SwitchState.Off, tag: 'span' })
+    await assertSwitch({ state: SwitchState.Off, tag: 'span' })
   })
 
-  it('should be possible to use the switch contents as the label', () => {
+  it('should be possible to use the switch contents as the label', async () => {
     render(
       <Switch checked={false} onChange={console.log}>
         <span>Enable notifications</span>
       </Switch>
     )
-    assertSwitch({ state: SwitchState.Off, label: 'Enable notifications' })
+    await assertSwitch({ state: SwitchState.Off, label: 'Enable notifications' })
   })
 
   describe('`type` attribute', () => {
@@ -122,7 +122,7 @@ describe('Rendering', () => {
 })
 
 describe('Render composition', () => {
-  it('should be possible to render a Switch.Group, Switch and Switch.Label', () => {
+  it('should be possible to render a Switch.Group, Switch and Switch.Label', async () => {
     render(
       <Switch.Group>
         <Switch checked={false} onChange={console.log} />
@@ -130,10 +130,10 @@ describe('Render composition', () => {
       </Switch.Group>
     )
 
-    assertSwitch({ state: SwitchState.Off, label: 'Enable notifications' })
+    await assertSwitch({ state: SwitchState.Off, label: 'Enable notifications' })
   })
 
-  it('should be possible to render a Switch.Group, Switch and Switch.Label (before the Switch)', () => {
+  it('should be possible to render a Switch.Group, Switch and Switch.Label (before the Switch)', async () => {
     render(
       <Switch.Group>
         <Switch.Label>Label B</Switch.Label>
@@ -147,10 +147,10 @@ describe('Render composition', () => {
     // technologies.
     //
     // Thus: Label A should not be part of the "label" in this case
-    assertSwitch({ state: SwitchState.Off, label: 'Label B' })
+    await assertSwitch({ state: SwitchState.Off, label: 'Label B' })
   })
 
-  it('should be possible to render a Switch.Group, Switch and Switch.Label (after the Switch)', () => {
+  it('should be possible to render a Switch.Group, Switch and Switch.Label (after the Switch)', async () => {
     render(
       <Switch.Group>
         <Switch checked={false} onChange={console.log}>
@@ -164,7 +164,7 @@ describe('Render composition', () => {
     // technologies.
     //
     // Thus: Label A should not be part of the "label" in this case
-    assertSwitch({ state: SwitchState.Off, label: 'Label B' })
+    await assertSwitch({ state: SwitchState.Off, label: 'Label B' })
   })
 
   it('should be possible to render a Switch.Group, Switch and Switch.Description (before the Switch)', async () => {
@@ -175,10 +175,10 @@ describe('Render composition', () => {
       </Switch.Group>
     )
 
-    assertSwitch({ state: SwitchState.Off, description: 'This is an important feature' })
+    await assertSwitch({ state: SwitchState.Off, description: 'This is an important feature' })
   })
 
-  it('should be possible to render a Switch.Group, Switch and Switch.Description (after the Switch)', () => {
+  it('should be possible to render a Switch.Group, Switch and Switch.Description (after the Switch)', async () => {
     render(
       <Switch.Group>
         <Switch checked={false} onChange={console.log} />
@@ -186,10 +186,10 @@ describe('Render composition', () => {
       </Switch.Group>
     )
 
-    assertSwitch({ state: SwitchState.Off, description: 'This is an important feature' })
+    await assertSwitch({ state: SwitchState.Off, description: 'This is an important feature' })
   })
 
-  it('should be possible to render a Switch.Group, Switch, Switch.Label and Switch.Description', () => {
+  it('should be possible to render a Switch.Group, Switch, Switch.Label and Switch.Description', async () => {
     render(
       <Switch.Group>
         <Switch.Label>Label A</Switch.Label>
@@ -198,7 +198,7 @@ describe('Render composition', () => {
       </Switch.Group>
     )
 
-    assertSwitch({
+    await assertSwitch({
       state: SwitchState.Off,
       label: 'Label A',
       description: 'This is an important feature',
@@ -226,7 +226,7 @@ describe('Keyboard interactions', () => {
       render(<Example />)
 
       // Ensure checkbox is off
-      assertSwitch({ state: SwitchState.Off })
+      await assertSwitch({ state: SwitchState.Off })
 
       // Focus the switch
       await focus(getSwitch())
@@ -235,13 +235,13 @@ describe('Keyboard interactions', () => {
       await press(Keys.Space)
 
       // Ensure state is on
-      assertSwitch({ state: SwitchState.On })
+      await assertSwitch({ state: SwitchState.On })
 
       // Toggle
       await press(Keys.Space)
 
       // Ensure state is off
-      assertSwitch({ state: SwitchState.Off })
+      await assertSwitch({ state: SwitchState.Off })
     })
   })
 
@@ -251,7 +251,7 @@ describe('Keyboard interactions', () => {
       render(<Switch checked={false} onChange={handleChange} />)
 
       // Ensure checkbox is off
-      assertSwitch({ state: SwitchState.Off })
+      await assertSwitch({ state: SwitchState.Off })
 
       // Focus the switch
       await focus(getSwitch())
@@ -285,7 +285,7 @@ describe('Keyboard interactions', () => {
 
       // Focus the input field
       await focus(getSwitch())
-      assertActiveElement(getSwitch())
+      await assertActiveElement(getSwitch())
 
       // Press enter (which should submit the form)
       await press(Keys.Enter)
@@ -306,19 +306,19 @@ describe('Keyboard interactions', () => {
       )
 
       // Ensure checkbox is off
-      assertSwitch({ state: SwitchState.Off })
+      await assertSwitch({ state: SwitchState.Off })
 
       // Focus the switch
       await focus(getSwitch())
 
       // Expect the switch to be active
-      assertActiveElement(getSwitch())
+      await assertActiveElement(getSwitch())
 
       // Toggle
       await press(Keys.Tab)
 
       // Expect the button to be active
-      assertActiveElement(document.getElementById('btn'))
+      await assertActiveElement(document.getElementById('btn'))
     })
   })
 })
@@ -342,19 +342,19 @@ describe('Mouse interactions', () => {
     render(<Example />)
 
     // Ensure checkbox is off
-    assertSwitch({ state: SwitchState.Off })
+    await assertSwitch({ state: SwitchState.Off })
 
     // Toggle
     await click(getSwitch())
 
     // Ensure state is on
-    assertSwitch({ state: SwitchState.On })
+    await assertSwitch({ state: SwitchState.On })
 
     // Toggle
     await click(getSwitch())
 
     // Ensure state is off
-    assertSwitch({ state: SwitchState.Off })
+    await assertSwitch({ state: SwitchState.Off })
   })
 
   it('should be possible to toggle the Switch with a click on the Label', async () => {
@@ -378,25 +378,25 @@ describe('Mouse interactions', () => {
     render(<Example />)
 
     // Ensure checkbox is off
-    assertSwitch({ state: SwitchState.Off })
+    await assertSwitch({ state: SwitchState.Off })
 
     // Toggle
     await click(getSwitchLabel())
 
     // Ensure the switch is focused
-    assertActiveElement(getSwitch())
+    await assertActiveElement(getSwitch())
 
     // Ensure state is on
-    assertSwitch({ state: SwitchState.On })
+    await assertSwitch({ state: SwitchState.On })
 
     // Toggle
     await click(getSwitchLabel())
 
     // Ensure the switch is focused
-    assertActiveElement(getSwitch())
+    await assertActiveElement(getSwitch())
 
     // Ensure state is off
-    assertSwitch({ state: SwitchState.Off })
+    await assertSwitch({ state: SwitchState.Off })
   })
 
   it('should not be possible to toggle the Switch with a click on the Label (passive)', async () => {
@@ -420,13 +420,13 @@ describe('Mouse interactions', () => {
     render(<Example />)
 
     // Ensure checkbox is off
-    assertSwitch({ state: SwitchState.Off })
+    await assertSwitch({ state: SwitchState.Off })
 
     // Toggle
     await click(getSwitchLabel())
 
     // Ensure state is still off
-    assertSwitch({ state: SwitchState.Off })
+    await assertSwitch({ state: SwitchState.Off })
   })
 })
 

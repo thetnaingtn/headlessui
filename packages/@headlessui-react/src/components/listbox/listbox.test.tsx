@@ -78,11 +78,11 @@ describe('safeguards', () => {
         </Listbox>
       )
 
-      assertListboxButton({
+      await assertListboxButton({
         state: ListboxState.InvisibleUnmounted,
         attributes: { id: 'headlessui-listbox-button-1' },
       })
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
     })
   )
 })
@@ -109,19 +109,19 @@ describe('Rendering', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         await click(getListboxButton())
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.Visible })
+        await assertListbox({ state: ListboxState.Visible })
       })
     )
 
@@ -139,27 +139,27 @@ describe('Rendering', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         await click(getListboxButton())
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         await press(Keys.Enter, getListboxButton())
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
       })
     )
 
@@ -282,25 +282,25 @@ describe('Rendering', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-2' },
         })
-        assertListboxLabel({
+        await assertListboxLabel({
           attributes: { id: 'headlessui-listbox-label-1' },
           textContent: JSON.stringify({ open: false, disabled: false }),
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         await click(getListboxButton())
 
-        assertListboxLabel({
+        await assertListboxLabel({
           attributes: { id: 'headlessui-listbox-label-1' },
           textContent: JSON.stringify({ open: true, disabled: false }),
         })
-        assertListbox({ state: ListboxState.Visible })
-        assertListboxLabelLinkedWithListbox()
-        assertListboxButtonLinkedWithListboxLabel()
+        await assertListbox({ state: ListboxState.Visible })
+        await assertListboxLabelLinkedWithListbox()
+        await assertListboxButtonLinkedWithListboxLabel()
       })
     )
 
@@ -319,20 +319,20 @@ describe('Rendering', () => {
           </Listbox>
         )
 
-        assertListboxLabel({
+        await assertListboxLabel({
           attributes: { id: 'headlessui-listbox-label-1' },
           textContent: JSON.stringify({ open: false, disabled: false }),
           tag: 'p',
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         await click(getListboxButton())
-        assertListboxLabel({
+        await assertListboxLabel({
           attributes: { id: 'headlessui-listbox-label-1' },
           textContent: JSON.stringify({ open: true, disabled: false }),
           tag: 'p',
         })
-        assertListbox({ state: ListboxState.Visible })
+        await assertListbox({ state: ListboxState.Visible })
       })
     )
   })
@@ -352,21 +352,21 @@ describe('Rendering', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
           textContent: JSON.stringify({ open: false, disabled: false }),
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         await click(getListboxButton())
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-button-1' },
           textContent: JSON.stringify({ open: true, disabled: false }),
         })
-        assertListbox({ state: ListboxState.Visible })
+        await assertListbox({ state: ListboxState.Visible })
       })
     )
 
@@ -386,21 +386,21 @@ describe('Rendering', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
           textContent: JSON.stringify({ open: false, disabled: false }),
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         await click(getListboxButton())
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-button-1' },
           textContent: JSON.stringify({ open: true, disabled: false }),
         })
-        assertListbox({ state: ListboxState.Visible })
+        await assertListbox({ state: ListboxState.Visible })
       })
     )
 
@@ -422,12 +422,12 @@ describe('Rendering', () => {
         // TODO: Needed to make it similar to vue test implementation?
         // await new Promise(requestAnimationFrame)
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-2' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
-        assertListboxButtonLinkedWithListboxLabel()
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListboxButtonLinkedWithListboxLabel()
       })
     )
 
@@ -509,23 +509,23 @@ describe('Rendering', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         await click(getListboxButton())
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({
+        await assertListbox({
           state: ListboxState.Visible,
           textContent: JSON.stringify({ open: true }),
         })
-        assertActiveElement(getListbox())
+        await assertActiveElement(getListbox())
       })
     )
 
@@ -557,12 +557,12 @@ describe('Rendering', () => {
         </Listbox>
       )
 
-      assertListbox({ state: ListboxState.InvisibleHidden })
+      await assertListbox({ state: ListboxState.InvisibleHidden })
 
       // Let's open the Listbox, to see if it is not hidden anymore
       await click(getListboxButton())
 
-      assertListbox({ state: ListboxState.Visible })
+      await assertListbox({ state: ListboxState.Visible })
     })
   })
 
@@ -579,19 +579,19 @@ describe('Rendering', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         await click(getListboxButton())
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({
+        await assertListbox({
           state: ListboxState.Visible,
           textContent: JSON.stringify({ active: false, selected: false, disabled: false }),
         })
@@ -623,7 +623,7 @@ describe('Rendering', () => {
     rerender(<Example hide={true} />) // Remove Listbox.Option 2
     rerender(<Example hide={false} />) // Re-add Listbox.Option 2
 
-    assertListbox({ state: ListboxState.Visible })
+    await assertListbox({ state: ListboxState.Visible })
 
     let options = getListboxOptions()
 
@@ -631,15 +631,15 @@ describe('Rendering', () => {
     await press(Keys.ArrowDown)
 
     // Verify that the first menu item is active
-    assertActiveListboxOption(options[0])
+    await assertActiveListboxOption(options[0])
 
     await press(Keys.ArrowDown)
     // Verify that the second menu item is active
-    assertActiveListboxOption(options[1])
+    await assertActiveListboxOption(options[1])
 
     await press(Keys.ArrowDown)
     // Verify that the third menu item is active
-    assertActiveListboxOption(options[2])
+    await assertActiveListboxOption(options[2])
   })
 })
 
@@ -664,11 +664,11 @@ describe('Rendering composition', () => {
         </Listbox>
       )
 
-      assertListboxButton({
+      await assertListboxButton({
         state: ListboxState.InvisibleUnmounted,
         attributes: { id: 'headlessui-listbox-button-1' },
       })
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
       // Open Listbox
       await click(getListboxButton())
@@ -685,7 +685,7 @@ describe('Rendering composition', () => {
       expect('' + options[2].classList).toEqual('no-special-treatment')
 
       // Double check that nothing is active
-      assertNoActiveListboxOption(getListbox())
+      await assertNoActiveListboxOption(getListbox())
 
       // Make the first option active
       await press(Keys.ArrowDown)
@@ -700,7 +700,7 @@ describe('Rendering composition', () => {
       expect('' + options[2].classList).toEqual('no-special-treatment')
 
       // Double check that the first option is the active one
-      assertActiveListboxOption(options[0])
+      await assertActiveListboxOption(options[0])
 
       // Let's go down, this should go to the third option since the second option is disabled!
       await press(Keys.ArrowDown)
@@ -715,7 +715,7 @@ describe('Rendering composition', () => {
       expect('' + options[2].classList).toEqual('no-special-treatment')
 
       // Double check that the last option is the active one
-      assertActiveListboxOption(options[2])
+      await assertActiveListboxOption(options[2])
     })
   )
 
@@ -739,17 +739,19 @@ describe('Rendering composition', () => {
         </Listbox>
       )
 
-      assertListboxButton({
+      await assertListboxButton({
         state: ListboxState.InvisibleUnmounted,
         attributes: { id: 'headlessui-listbox-button-1' },
       })
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
       // Open Listbox
       await click(getListboxButton())
 
       // Verify options are buttons now
-      getListboxOptions().forEach((option) => assertListboxOption(option, { tag: 'button' }))
+      await Promise.all(
+        getListboxOptions().map((option) => assertListboxOption(option, { tag: 'button' }))
+      )
     })
   )
 })
@@ -789,19 +791,19 @@ describe('Composition', () => {
         </Listbox>
       )
 
-      assertListboxButton({
+      await assertListboxButton({
         state: ListboxState.InvisibleUnmounted,
         attributes: { id: 'headlessui-listbox-button-1' },
       })
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
       await click(getListboxButton())
 
-      assertListboxButton({
+      await assertListboxButton({
         state: ListboxState.Visible,
         attributes: { id: 'headlessui-listbox-button-1' },
       })
-      assertListbox({
+      await assertListbox({
         state: ListboxState.Visible,
         textContent: JSON.stringify({ active: false, selected: false, disabled: false }),
       })
@@ -836,11 +838,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -849,22 +851,22 @@ describe('Keyboard interactions', () => {
         await press(Keys.Enter)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option) => assertListboxOption(option, { selected: false }))
+        await Promise.all(options.map((option) => assertListboxOption(option, { selected: false })))
 
         // Verify that the first listbox option is active
-        assertActiveListboxOption(options[0])
-        assertNoSelectedListboxOption()
+        await assertActiveListboxOption(options[0])
+        await assertNoSelectedListboxOption()
       })
     )
 
@@ -882,11 +884,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -895,11 +897,11 @@ describe('Keyboard interactions', () => {
         await press(Keys.Enter)
 
         // Verify it is still closed
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
       })
     )
 
@@ -917,11 +919,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -930,21 +932,23 @@ describe('Keyboard interactions', () => {
         await press(Keys.Enter)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option, i) => assertListboxOption(option, { selected: i === 1 }))
+        await Promise.all(
+          options.map((option, i) => assertListboxOption(option, { selected: i === 1 }))
+        )
 
         // Verify that the second listbox option is active (because it is already selected)
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
       })
     )
 
@@ -962,11 +966,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleHidden,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleHidden })
+        await assertListbox({ state: ListboxState.InvisibleHidden })
 
         // Focus the button
         await focus(getListboxButton())
@@ -975,13 +979,13 @@ describe('Keyboard interactions', () => {
         await press(Keys.Enter)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         let options = getListboxOptions()
 
@@ -989,10 +993,10 @@ describe('Keyboard interactions', () => {
         await mouseMove(options[0])
 
         // Verify that Option A is active
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
 
         // Verify that Option B is still selected
-        assertListboxOption(options[1], { selected: true })
+        await assertListboxOption(options[1], { selected: true })
 
         // Close/Hide the listbox
         await press(Keys.Escape)
@@ -1002,10 +1006,12 @@ describe('Keyboard interactions', () => {
 
         // Verify we have listbox options
         expect(options).toHaveLength(3)
-        options.forEach((option, i) => assertListboxOption(option, { selected: i === 1 }))
+        await Promise.all(
+          options.map((option, i) => assertListboxOption(option, { selected: i === 1 }))
+        )
 
         // Verify that the second listbox option is active (because it is already selected)
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
       })
     )
 
@@ -1031,11 +1037,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1044,21 +1050,23 @@ describe('Keyboard interactions', () => {
         await press(Keys.Enter)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option, i) => assertListboxOption(option, { selected: i === 1 }))
+        await Promise.all(
+          options.map((option, i) => assertListboxOption(option, { selected: i === 1 }))
+        )
 
         // Verify that the second listbox option is active (because it is already selected)
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
       })
     )
 
@@ -1072,17 +1080,17 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
 
         // Open listbox
         await press(Keys.Enter)
-        assertListbox({ state: ListboxState.Visible })
-        assertActiveElement(getListbox())
+        await assertListbox({ state: ListboxState.Visible })
+        await assertActiveElement(getListbox())
 
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
       })
     )
 
@@ -1102,11 +1110,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1117,7 +1125,7 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // Verify that the first non-disabled listbox option is active
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
       })
     )
 
@@ -1139,11 +1147,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1154,7 +1162,7 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // Verify that the first non-disabled listbox option is active
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
 
@@ -1178,11 +1186,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1190,7 +1198,7 @@ describe('Keyboard interactions', () => {
         // Open listbox
         await press(Keys.Enter)
 
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
       })
     )
 
@@ -1208,27 +1216,27 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Open listbox
         await click(getListboxButton())
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
+        await assertListboxButton({ state: ListboxState.Visible })
 
         // Close listbox
         await press(Keys.Enter)
 
         // Verify it is closed
-        assertListboxButton({ state: ListboxState.InvisibleUnmounted })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListboxButton({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Verify the button is focused again
-        assertActiveElement(getListboxButton())
+        await assertActiveElement(getListboxButton())
       })
     )
 
@@ -1260,17 +1268,17 @@ describe('Keyboard interactions', () => {
 
         render(<Example />)
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Open listbox
         await click(getListboxButton())
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
+        await assertListboxButton({ state: ListboxState.Visible })
 
         // Activate the first listbox option
         let options = getListboxOptions()
@@ -1280,21 +1288,21 @@ describe('Keyboard interactions', () => {
         await press(Keys.Enter)
 
         // Verify it is closed
-        assertListboxButton({ state: ListboxState.InvisibleUnmounted })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListboxButton({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Verify we got the change event
         expect(handleChange).toHaveBeenCalledTimes(1)
         expect(handleChange).toHaveBeenCalledWith('a')
 
         // Verify the button is focused again
-        assertActiveElement(getListboxButton())
+        await assertActiveElement(getListboxButton())
 
         // Open listbox again
         await click(getListboxButton())
 
         // Verify the active option is the previously selected one
-        assertActiveListboxOption(getListboxOptions()[0])
+        await assertActiveListboxOption(getListboxOptions()[0])
       })
     )
   })
@@ -1314,11 +1322,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1327,19 +1335,19 @@ describe('Keyboard interactions', () => {
         await press(Keys.Space)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option) => assertListboxOption(option))
-        assertActiveListboxOption(options[0])
+        await Promise.all(options.map((option) => assertListboxOption(option)))
+        await assertActiveListboxOption(options[0])
       })
     )
 
@@ -1357,11 +1365,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1370,11 +1378,11 @@ describe('Keyboard interactions', () => {
         await press(Keys.Space)
 
         // Verify it is still closed
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
       })
     )
 
@@ -1392,11 +1400,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1405,21 +1413,23 @@ describe('Keyboard interactions', () => {
         await press(Keys.Space)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option, i) => assertListboxOption(option, { selected: i === 1 }))
+        await Promise.all(
+          options.map((option, i) => assertListboxOption(option, { selected: i === 1 }))
+        )
 
         // Verify that the second listbox option is active (because it is already selected)
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
       })
     )
 
@@ -1433,17 +1443,17 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
 
         // Open listbox
         await press(Keys.Space)
-        assertListbox({ state: ListboxState.Visible })
-        assertActiveElement(getListbox())
+        await assertListbox({ state: ListboxState.Visible })
+        await assertActiveElement(getListbox())
 
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
       })
     )
 
@@ -1463,11 +1473,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1478,7 +1488,7 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // Verify that the first non-disabled listbox option is active
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
       })
     )
 
@@ -1500,11 +1510,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1515,7 +1525,7 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // Verify that the first non-disabled listbox option is active
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
 
@@ -1539,11 +1549,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1551,7 +1561,7 @@ describe('Keyboard interactions', () => {
         // Open listbox
         await press(Keys.Space)
 
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
       })
     )
 
@@ -1583,17 +1593,17 @@ describe('Keyboard interactions', () => {
 
         render(<Example />)
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Open listbox
         await click(getListboxButton())
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
+        await assertListboxButton({ state: ListboxState.Visible })
 
         // Activate the first listbox option
         let options = getListboxOptions()
@@ -1603,21 +1613,21 @@ describe('Keyboard interactions', () => {
         await press(Keys.Space)
 
         // Verify it is closed
-        assertListboxButton({ state: ListboxState.InvisibleUnmounted })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListboxButton({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Verify we got the change event
         expect(handleChange).toHaveBeenCalledTimes(1)
         expect(handleChange).toHaveBeenCalledWith('a')
 
         // Verify the button is focused again
-        assertActiveElement(getListboxButton())
+        await assertActiveElement(getListboxButton())
 
         // Open listbox again
         await click(getListboxButton())
 
         // Verify the active option is the previously selected one
-        assertActiveListboxOption(getListboxOptions()[0])
+        await assertActiveListboxOption(getListboxOptions()[0])
       })
     )
   })
@@ -1644,23 +1654,23 @@ describe('Keyboard interactions', () => {
         await press(Keys.Space)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         // Close listbox
         await press(Keys.Escape)
 
         // Verify it is closed
-        assertListboxButton({ state: ListboxState.InvisibleUnmounted })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListboxButton({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Verify the button is focused again
-        assertActiveElement(getListboxButton())
+        await assertActiveElement(getListboxButton())
       })
     )
   })
@@ -1680,11 +1690,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1693,27 +1703,27 @@ describe('Keyboard interactions', () => {
         await press(Keys.Enter)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option) => assertListboxOption(option))
-        assertActiveListboxOption(options[0])
+        await Promise.all(options.map((option) => assertListboxOption(option)))
+        await assertActiveListboxOption(options[0])
 
         // Try to tab
         await press(Keys.Tab)
 
         // Verify it is still open
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({ state: ListboxState.Visible })
-        assertActiveElement(getListbox())
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({ state: ListboxState.Visible })
+        await assertActiveElement(getListbox())
       })
     )
 
@@ -1731,11 +1741,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1744,27 +1754,27 @@ describe('Keyboard interactions', () => {
         await press(Keys.Enter)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option) => assertListboxOption(option))
-        assertActiveListboxOption(options[0])
+        await Promise.all(options.map((option) => assertListboxOption(option)))
+        await assertActiveListboxOption(options[0])
 
         // Try to Shift+Tab
         await press(shift(Keys.Tab))
 
         // Verify it is still open
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({ state: ListboxState.Visible })
-        assertActiveElement(getListbox())
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({ state: ListboxState.Visible })
+        await assertActiveElement(getListbox())
       })
     )
   })
@@ -1784,11 +1794,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1797,21 +1807,21 @@ describe('Keyboard interactions', () => {
         await press(Keys.ArrowDown)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option) => assertListboxOption(option))
+        await Promise.all(options.map((option) => assertListboxOption(option)))
 
         // Verify that the first listbox option is active
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
       })
     )
 
@@ -1829,11 +1839,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1842,11 +1852,11 @@ describe('Keyboard interactions', () => {
         await press(Keys.ArrowDown)
 
         // Verify it is still closed
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
       })
     )
 
@@ -1864,11 +1874,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1877,21 +1887,23 @@ describe('Keyboard interactions', () => {
         await press(Keys.ArrowDown)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option, i) => assertListboxOption(option, { selected: i === 1 }))
+        await Promise.all(
+          options.map((option, i) => assertListboxOption(option, { selected: i === 1 }))
+        )
 
         // Verify that the second listbox option is active (because it is already selected)
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
       })
     )
 
@@ -1905,17 +1917,17 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
 
         // Open listbox
         await press(Keys.ArrowDown)
-        assertListbox({ state: ListboxState.Visible })
-        assertActiveElement(getListbox())
+        await assertListbox({ state: ListboxState.Visible })
+        await assertActiveElement(getListbox())
 
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
       })
     )
 
@@ -1933,11 +1945,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1948,20 +1960,20 @@ describe('Keyboard interactions', () => {
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option) => assertListboxOption(option))
-        assertActiveListboxOption(options[0])
+        await Promise.all(options.map((option) => assertListboxOption(option)))
+        await assertActiveListboxOption(options[0])
 
         // We should be able to go down once
         await press(Keys.ArrowDown)
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
 
         // We should be able to go down again
         await press(Keys.ArrowDown)
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
 
         // We should NOT be able to go down again (because last option). Current implementation won't go around.
         await press(Keys.ArrowDown)
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
 
@@ -1981,11 +1993,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -1996,12 +2008,12 @@ describe('Keyboard interactions', () => {
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option) => assertListboxOption(option))
-        assertActiveListboxOption(options[1])
+        await Promise.all(options.map((option) => assertListboxOption(option)))
+        await assertActiveListboxOption(options[1])
 
         // We should be able to go down once
         await press(Keys.ArrowDown)
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
 
@@ -2023,11 +2035,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -2038,8 +2050,8 @@ describe('Keyboard interactions', () => {
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option) => assertListboxOption(option))
-        assertActiveListboxOption(options[2])
+        await Promise.all(options.map((option) => assertListboxOption(option)))
+        await assertActiveListboxOption(options[2])
       })
     )
   })
@@ -2059,11 +2071,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -2074,20 +2086,20 @@ describe('Keyboard interactions', () => {
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option) => assertListboxOption(option))
-        assertActiveListboxOption(options[0])
+        await Promise.all(options.map((option) => assertListboxOption(option)))
+        await assertActiveListboxOption(options[0])
 
         // We should be able to go right once
         await press(Keys.ArrowRight)
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
 
         // We should be able to go right again
         await press(Keys.ArrowRight)
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
 
         // We should NOT be able to go right again (because last option). Current implementation won't go around.
         await press(Keys.ArrowRight)
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
   })
@@ -2107,11 +2119,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -2120,21 +2132,21 @@ describe('Keyboard interactions', () => {
         await press(Keys.ArrowUp)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option) => assertListboxOption(option))
+        await Promise.all(options.map((option) => assertListboxOption(option)))
 
         // ! ALERT: The LAST option should now be active
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
 
@@ -2152,11 +2164,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -2165,11 +2177,11 @@ describe('Keyboard interactions', () => {
         await press(Keys.ArrowUp)
 
         // Verify it is still closed
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
       })
     )
 
@@ -2187,11 +2199,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -2200,21 +2212,23 @@ describe('Keyboard interactions', () => {
         await press(Keys.ArrowUp)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option, i) => assertListboxOption(option, { selected: i === 1 }))
+        await Promise.all(
+          options.map((option, i) => assertListboxOption(option, { selected: i === 1 }))
+        )
 
         // Verify that the second listbox option is active (because it is already selected)
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
       })
     )
 
@@ -2228,17 +2242,17 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
 
         // Open listbox
         await press(Keys.ArrowUp)
-        assertListbox({ state: ListboxState.Visible })
-        assertActiveElement(getListbox())
+        await assertListbox({ state: ListboxState.Visible })
+        await assertActiveElement(getListbox())
 
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
       })
     )
 
@@ -2260,11 +2274,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -2275,8 +2289,8 @@ describe('Keyboard interactions', () => {
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option) => assertListboxOption(option))
-        assertActiveListboxOption(options[0])
+        await Promise.all(options.map((option) => assertListboxOption(option)))
+        await assertActiveListboxOption(options[0])
       })
     )
 
@@ -2298,11 +2312,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -2313,16 +2327,16 @@ describe('Keyboard interactions', () => {
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option) => assertListboxOption(option))
-        assertActiveListboxOption(options[2])
+        await Promise.all(options.map((option) => assertListboxOption(option)))
+        await assertActiveListboxOption(options[2])
 
         // We should not be able to go up (because those are disabled)
         await press(Keys.ArrowUp)
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
 
         // We should not be able to go down (because this is the last option)
         await press(Keys.ArrowDown)
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
 
@@ -2340,11 +2354,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -2353,31 +2367,31 @@ describe('Keyboard interactions', () => {
         await press(Keys.ArrowUp)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option) => assertListboxOption(option))
-        assertActiveListboxOption(options[2])
+        await Promise.all(options.map((option) => assertListboxOption(option)))
+        await assertActiveListboxOption(options[2])
 
         // We should be able to go down once
         await press(Keys.ArrowUp)
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
 
         // We should be able to go down again
         await press(Keys.ArrowUp)
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
 
         // We should NOT be able to go up again (because first option). Current implementation won't go around.
         await press(Keys.ArrowUp)
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
       })
     )
   })
@@ -2397,11 +2411,11 @@ describe('Keyboard interactions', () => {
           </Listbox>
         )
 
-        assertListboxButton({
+        await assertListboxButton({
           state: ListboxState.InvisibleUnmounted,
           attributes: { id: 'headlessui-listbox-button-1' },
         })
-        assertListbox({ state: ListboxState.InvisibleUnmounted })
+        await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
         // Focus the button
         await focus(getListboxButton())
@@ -2410,32 +2424,32 @@ describe('Keyboard interactions', () => {
         await press(Keys.ArrowUp)
 
         // Verify it is visible
-        assertListboxButton({ state: ListboxState.Visible })
-        assertListbox({
+        await assertListboxButton({ state: ListboxState.Visible })
+        await assertListbox({
           state: ListboxState.Visible,
           attributes: { id: 'headlessui-listbox-options-2' },
           orientation: 'horizontal',
         })
-        assertActiveElement(getListbox())
-        assertListboxButtonLinkedWithListbox()
+        await assertActiveElement(getListbox())
+        await assertListboxButtonLinkedWithListbox()
 
         // Verify we have listbox options
         let options = getListboxOptions()
         expect(options).toHaveLength(3)
-        options.forEach((option) => assertListboxOption(option))
-        assertActiveListboxOption(options[2])
+        await Promise.all(options.map((option) => assertListboxOption(option)))
+        await assertActiveListboxOption(options[2])
 
         // We should be able to go left once
         await press(Keys.ArrowLeft)
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
 
         // We should be able to go left again
         await press(Keys.ArrowLeft)
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
 
         // We should NOT be able to go left again (because first option). Current implementation won't go around.
         await press(Keys.ArrowLeft)
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
       })
     )
   })
@@ -2464,11 +2478,11 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // We should be on the first option
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
 
         // We should be able to go to the last option
         await press(Keys.End)
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
 
@@ -2500,11 +2514,11 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // We should be on the first option
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
 
         // We should be able to go to the last non-disabled option
         await press(Keys.End)
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
       })
     )
 
@@ -2533,13 +2547,13 @@ describe('Keyboard interactions', () => {
         await click(getListboxButton())
 
         // We opened via click, we don't have an active option
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
 
         // We should not be able to go to the end
         await press(Keys.End)
 
         let options = getListboxOptions()
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
       })
     )
 
@@ -2570,12 +2584,12 @@ describe('Keyboard interactions', () => {
         await click(getListboxButton())
 
         // We opened via click, we don't have an active option
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
 
         // We should not be able to go to the end
         await press(Keys.End)
 
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
       })
     )
   })
@@ -2604,11 +2618,11 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // We should be on the first option
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
 
         // We should be able to go to the last option
         await press(Keys.PageDown)
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
 
@@ -2640,11 +2654,11 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // We should be on the first option
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
 
         // We should be able to go to the last non-disabled option
         await press(Keys.PageDown)
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
       })
     )
 
@@ -2673,13 +2687,13 @@ describe('Keyboard interactions', () => {
         await click(getListboxButton())
 
         // We opened via click, we don't have an active option
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
 
         // We should not be able to go to the end
         await press(Keys.PageDown)
 
         let options = getListboxOptions()
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
       })
     )
 
@@ -2710,12 +2724,12 @@ describe('Keyboard interactions', () => {
         await click(getListboxButton())
 
         // We opened via click, we don't have an active option
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
 
         // We should not be able to go to the end
         await press(Keys.PageDown)
 
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
       })
     )
   })
@@ -2744,11 +2758,11 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // We should be on the last option
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
 
         // We should be able to go to the first option
         await press(Keys.Home)
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
       })
     )
 
@@ -2775,7 +2789,7 @@ describe('Keyboard interactions', () => {
         await click(getListboxButton())
 
         // We opened via click, we don't have an active option
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
 
         // We should not be able to go to the end
         await press(Keys.Home)
@@ -2783,7 +2797,7 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // We should be on the first non-disabled option
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
 
@@ -2812,13 +2826,13 @@ describe('Keyboard interactions', () => {
         await click(getListboxButton())
 
         // We opened via click, we don't have an active option
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
 
         // We should not be able to go to the end
         await press(Keys.Home)
 
         let options = getListboxOptions()
-        assertActiveListboxOption(options[3])
+        await assertActiveListboxOption(options[3])
       })
     )
 
@@ -2849,12 +2863,12 @@ describe('Keyboard interactions', () => {
         await click(getListboxButton())
 
         // We opened via click, we don't have an active option
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
 
         // We should not be able to go to the end
         await press(Keys.Home)
 
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
       })
     )
   })
@@ -2883,11 +2897,11 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // We should be on the last option
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
 
         // We should be able to go to the first option
         await press(Keys.PageUp)
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
       })
     )
 
@@ -2914,7 +2928,7 @@ describe('Keyboard interactions', () => {
         await click(getListboxButton())
 
         // We opened via click, we don't have an active option
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
 
         // We should not be able to go to the end
         await press(Keys.PageUp)
@@ -2922,7 +2936,7 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // We should be on the first non-disabled option
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
 
@@ -2951,13 +2965,13 @@ describe('Keyboard interactions', () => {
         await click(getListboxButton())
 
         // We opened via click, we don't have an active option
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
 
         // We should not be able to go to the end
         await press(Keys.PageUp)
 
         let options = getListboxOptions()
-        assertActiveListboxOption(options[3])
+        await assertActiveListboxOption(options[3])
       })
     )
 
@@ -2988,12 +3002,12 @@ describe('Keyboard interactions', () => {
         await click(getListboxButton())
 
         // We opened via click, we don't have an active option
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
 
         // We should not be able to go to the end
         await press(Keys.PageUp)
 
-        assertNoActiveListboxOption()
+        await assertNoActiveListboxOption()
       })
     )
   })
@@ -3020,15 +3034,15 @@ describe('Keyboard interactions', () => {
 
         // We should be able to go to the second option
         await type(word('bob'))
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
 
         // We should be able to go to the first option
         await type(word('alice'))
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
 
         // We should be able to go to the last option
         await type(word('charlie'))
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
 
@@ -3055,19 +3069,19 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // We should be on the last option
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
 
         // We should be able to go to the second option
         await type(word('bo'))
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
 
         // We should be able to go to the first option
         await type(word('ali'))
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
 
         // We should be able to go to the last option
         await type(word('char'))
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
 
@@ -3094,19 +3108,19 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // We should be on the last option
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
 
         // We should be able to go to the second option
         await type(word('value b'))
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
 
         // We should be able to go to the first option
         await type(word('value a'))
-        assertActiveListboxOption(options[0])
+        await assertActiveListboxOption(options[0])
 
         // We should be able to go to the last option
         await type(word('value c'))
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
 
@@ -3135,13 +3149,13 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // We should be on the last option
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
 
         // We should not be able to go to the disabled option
         await type(word('bo'))
 
         // We should still be on the last option
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
       })
     )
 
@@ -3168,13 +3182,13 @@ describe('Keyboard interactions', () => {
         let options = getListboxOptions()
 
         // We should be on the last option
-        assertActiveListboxOption(options[2])
+        await assertActiveListboxOption(options[2])
 
         // Search for bob in a different casing
         await type(word('BO'))
 
         // We should be on `bob`
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
       })
     )
 
@@ -3202,13 +3216,13 @@ describe('Keyboard interactions', () => {
         await type(word('b'))
 
         // We should be on the first `bob`
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
 
         // Search for bob again
         await type(word('b'))
 
         // We should be on the second `bob`
-        assertActiveListboxOption(options[3])
+        await assertActiveListboxOption(options[3])
       })
     )
 
@@ -3241,13 +3255,13 @@ describe('Keyboard interactions', () => {
         await type(word('b'))
 
         // We should be on the first `bob`
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
 
         // Search for "b" in "bob" again
         await type(word('b'))
 
         // We should be on the next `bob`
-        assertActiveListboxOption(options[3])
+        await assertActiveListboxOption(options[3])
 
         // ---
 
@@ -3258,13 +3272,13 @@ describe('Keyboard interactions', () => {
         await type(word('bo'))
 
         // We should be on the first `bob`
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
 
         // Search for "bo" in "bob" again
         await type(word('bo'))
 
         // We should be on the next `bob`
-        assertActiveListboxOption(options[3])
+        await assertActiveListboxOption(options[3])
 
         // ---
 
@@ -3275,13 +3289,13 @@ describe('Keyboard interactions', () => {
         await type(word('bob'))
 
         // We should be on the first `bob`
-        assertActiveListboxOption(options[1])
+        await assertActiveListboxOption(options[1])
 
         // Search for "bob" in "bob" again
         await type(word('bob'))
 
         // We should be on the next `bob`
-        assertActiveListboxOption(options[3])
+        await assertActiveListboxOption(options[3])
       })
     )
   })
@@ -3304,13 +3318,13 @@ describe('Mouse interactions', () => {
       )
 
       // Ensure the button is not focused yet
-      assertActiveElement(document.body)
+      await assertActiveElement(document.body)
 
       // Focus the label
       await click(getListboxLabel())
 
       // Ensure that the actual button is focused instead
-      assertActiveElement(getListboxButton())
+      await assertActiveElement(getListboxButton())
     })
   )
 
@@ -3330,13 +3344,13 @@ describe('Mouse interactions', () => {
       )
 
       // Ensure the button is not focused yet
-      assertActiveElement(document.body)
+      await assertActiveElement(document.body)
 
       // Focus the label
       await click(getListboxLabel(), MouseButton.Right)
 
       // Ensure that the body is still active
-      assertActiveElement(document.body)
+      await assertActiveElement(document.body)
     })
   )
 
@@ -3354,28 +3368,28 @@ describe('Mouse interactions', () => {
         </Listbox>
       )
 
-      assertListboxButton({
+      await assertListboxButton({
         state: ListboxState.InvisibleUnmounted,
         attributes: { id: 'headlessui-listbox-button-1' },
       })
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
       // Open listbox
       await click(getListboxButton())
 
       // Verify it is visible
-      assertListboxButton({ state: ListboxState.Visible })
-      assertListbox({
+      await assertListboxButton({ state: ListboxState.Visible })
+      await assertListbox({
         state: ListboxState.Visible,
         attributes: { id: 'headlessui-listbox-options-2' },
       })
-      assertActiveElement(getListbox())
-      assertListboxButtonLinkedWithListbox()
+      await assertActiveElement(getListbox())
+      await assertListboxButtonLinkedWithListbox()
 
       // Verify we have listbox options
       let options = getListboxOptions()
       expect(options).toHaveLength(3)
-      options.forEach((option) => assertListboxOption(option))
+      await Promise.all(options.map((option) => assertListboxOption(option)))
     })
   )
 
@@ -3393,17 +3407,17 @@ describe('Mouse interactions', () => {
         </Listbox>
       )
 
-      assertListboxButton({
+      await assertListboxButton({
         state: ListboxState.InvisibleUnmounted,
         attributes: { id: 'headlessui-listbox-button-1' },
       })
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
       // Try to open the listbox
       await click(getListboxButton(), MouseButton.Right)
 
       // Verify it is still closed
-      assertListboxButton({ state: ListboxState.InvisibleUnmounted })
+      await assertListboxButton({ state: ListboxState.InvisibleUnmounted })
     })
   )
 
@@ -3421,21 +3435,21 @@ describe('Mouse interactions', () => {
         </Listbox>
       )
 
-      assertListboxButton({
+      await assertListboxButton({
         state: ListboxState.InvisibleUnmounted,
         attributes: { id: 'headlessui-listbox-button-1' },
       })
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
       // Try to open the listbox
       await click(getListboxButton())
 
       // Verify it is still closed
-      assertListboxButton({
+      await assertListboxButton({
         state: ListboxState.InvisibleUnmounted,
         attributes: { id: 'headlessui-listbox-button-1' },
       })
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
     })
   )
 
@@ -3453,31 +3467,33 @@ describe('Mouse interactions', () => {
         </Listbox>
       )
 
-      assertListboxButton({
+      await assertListboxButton({
         state: ListboxState.InvisibleUnmounted,
         attributes: { id: 'headlessui-listbox-button-1' },
       })
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
       // Open listbox
       await click(getListboxButton())
 
       // Verify it is visible
-      assertListboxButton({ state: ListboxState.Visible })
-      assertListbox({
+      await assertListboxButton({ state: ListboxState.Visible })
+      await assertListbox({
         state: ListboxState.Visible,
         attributes: { id: 'headlessui-listbox-options-2' },
       })
-      assertActiveElement(getListbox())
-      assertListboxButtonLinkedWithListbox()
+      await assertActiveElement(getListbox())
+      await assertListboxButtonLinkedWithListbox()
 
       // Verify we have listbox options
       let options = getListboxOptions()
       expect(options).toHaveLength(3)
-      options.forEach((option, i) => assertListboxOption(option, { selected: i === 1 }))
+      await Promise.all(
+        options.map((option, i) => assertListboxOption(option, { selected: i === 1 }))
+      )
 
       // Verify that the second listbox option is active (because it is already selected)
-      assertActiveListboxOption(options[1])
+      await assertActiveListboxOption(options[1])
     })
   )
 
@@ -3499,14 +3515,14 @@ describe('Mouse interactions', () => {
       await click(getListboxButton())
 
       // Verify it is visible
-      assertListboxButton({ state: ListboxState.Visible })
+      await assertListboxButton({ state: ListboxState.Visible })
 
       // Click to close
       await click(getListboxButton())
 
       // Verify it is closed
-      assertListboxButton({ state: ListboxState.InvisibleUnmounted })
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListboxButton({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
     })
   )
 
@@ -3525,13 +3541,13 @@ describe('Mouse interactions', () => {
       )
 
       // Verify that the window is closed
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
       // Click something that is not related to the listbox
       await click(document.body)
 
       // Should still be closed
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
     })
   )
 
@@ -3551,17 +3567,17 @@ describe('Mouse interactions', () => {
 
       // Open listbox
       await click(getListboxButton())
-      assertListbox({ state: ListboxState.Visible })
-      assertActiveElement(getListbox())
+      await assertListbox({ state: ListboxState.Visible })
+      await assertActiveElement(getListbox())
 
       // Click something that is not related to the listbox
       await click(document.body)
 
       // Should be closed now
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
       // Verify the button is focused again
-      assertActiveElement(getListboxButton())
+      await assertActiveElement(getListboxButton())
     })
   )
 
@@ -3597,7 +3613,7 @@ describe('Mouse interactions', () => {
       expect(getListboxes()).toHaveLength(1) // Only 1 listbox should be visible
 
       // Ensure the open listbox is linked to the first button
-      assertListboxButtonLinkedWithListbox(button1, getListbox())
+      await assertListboxButtonLinkedWithListbox(button1, getListbox())
 
       // Click the second listbox button
       await click(button2)
@@ -3605,7 +3621,7 @@ describe('Mouse interactions', () => {
       expect(getListboxes()).toHaveLength(1) // Only 1 listbox should be visible
 
       // Ensure the open listbox is linked to the second button
-      assertListboxButtonLinkedWithListbox(button2, getListbox())
+      await assertListboxButtonLinkedWithListbox(button2, getListbox())
     })
   )
 
@@ -3625,17 +3641,17 @@ describe('Mouse interactions', () => {
 
       // Open listbox
       await click(getListboxButton())
-      assertListbox({ state: ListboxState.Visible })
-      assertActiveElement(getListbox())
+      await assertListbox({ state: ListboxState.Visible })
+      await assertActiveElement(getListbox())
 
       // Click the listbox button again
       await click(getListboxButton())
 
       // Should be closed now
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
       // Verify the button is focused again
-      assertActiveElement(getListboxButton())
+      await assertActiveElement(getListboxButton())
     })
   )
 
@@ -3664,16 +3680,16 @@ describe('Mouse interactions', () => {
       await click(getListboxButton())
 
       // Ensure the listbox is open
-      assertListbox({ state: ListboxState.Visible })
+      await assertListbox({ state: ListboxState.Visible })
 
       // Click the span inside the button
       await click(getByText('Next'))
 
       // Ensure the listbox is closed
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
 
       // Ensure the outside button is focused
-      assertActiveElement(document.getElementById('btn'))
+      await assertActiveElement(document.getElementById('btn'))
 
       // Ensure that the focus button only got focus once (first click)
       expect(focusFn).toHaveBeenCalledTimes(1)
@@ -3700,15 +3716,15 @@ describe('Mouse interactions', () => {
       let options = getListboxOptions()
       // We should be able to go to the second option
       await mouseMove(options[1])
-      assertActiveListboxOption(options[1])
+      await assertActiveListboxOption(options[1])
 
       // We should be able to go to the first option
       await mouseMove(options[0])
-      assertActiveListboxOption(options[0])
+      await assertActiveListboxOption(options[0])
 
       // We should be able to go to the last option
       await mouseMove(options[2])
-      assertActiveListboxOption(options[2])
+      await assertActiveListboxOption(options[2])
     })
   )
 
@@ -3732,7 +3748,7 @@ describe('Mouse interactions', () => {
       let options = getListboxOptions()
       // We should be able to go to the second option
       await mouseMove(options[1])
-      assertActiveListboxOption(options[1])
+      await assertActiveListboxOption(options[1])
     })
   )
 
@@ -3757,12 +3773,12 @@ describe('Mouse interactions', () => {
 
       // We should be able to go to the second option
       await mouseMove(options[1])
-      assertActiveListboxOption(options[1])
+      await assertActiveListboxOption(options[1])
 
       await mouseMove(options[1])
 
       // Nothing should be changed
-      assertActiveListboxOption(options[1])
+      await assertActiveListboxOption(options[1])
     })
   )
 
@@ -3788,7 +3804,7 @@ describe('Mouse interactions', () => {
       let options = getListboxOptions()
 
       await mouseMove(options[1])
-      assertNoActiveListboxOption()
+      await assertNoActiveListboxOption()
     })
   )
 
@@ -3817,7 +3833,7 @@ describe('Mouse interactions', () => {
       await mouseMove(options[1])
 
       // We should not have an active option now
-      assertNoActiveListboxOption()
+      await assertNoActiveListboxOption()
     })
   )
 
@@ -3842,24 +3858,24 @@ describe('Mouse interactions', () => {
 
       // We should be able to go to the second option
       await mouseMove(options[1])
-      assertActiveListboxOption(options[1])
+      await assertActiveListboxOption(options[1])
 
       await mouseLeave(options[1])
-      assertNoActiveListboxOption()
+      await assertNoActiveListboxOption()
 
       // We should be able to go to the first option
       await mouseMove(options[0])
-      assertActiveListboxOption(options[0])
+      await assertActiveListboxOption(options[0])
 
       await mouseLeave(options[0])
-      assertNoActiveListboxOption()
+      await assertNoActiveListboxOption()
 
       // We should be able to go to the last option
       await mouseMove(options[2])
-      assertActiveListboxOption(options[2])
+      await assertActiveListboxOption(options[2])
 
       await mouseLeave(options[2])
-      assertNoActiveListboxOption()
+      await assertNoActiveListboxOption()
     })
   )
 
@@ -3886,10 +3902,10 @@ describe('Mouse interactions', () => {
 
       // Try to hover over option 1, which is disabled
       await mouseMove(options[1])
-      assertNoActiveListboxOption()
+      await assertNoActiveListboxOption()
 
       await mouseLeave(options[1])
-      assertNoActiveListboxOption()
+      await assertNoActiveListboxOption()
     })
   )
 
@@ -3922,25 +3938,25 @@ describe('Mouse interactions', () => {
 
       // Open listbox
       await click(getListboxButton())
-      assertListbox({ state: ListboxState.Visible })
-      assertActiveElement(getListbox())
+      await assertListbox({ state: ListboxState.Visible })
+      await assertActiveElement(getListbox())
 
       let options = getListboxOptions()
 
       // We should be able to click the first option
       await click(options[1])
-      assertListbox({ state: ListboxState.InvisibleUnmounted })
+      await assertListbox({ state: ListboxState.InvisibleUnmounted })
       expect(handleChange).toHaveBeenCalledTimes(1)
       expect(handleChange).toHaveBeenCalledWith('bob')
 
       // Verify the button is focused again
-      assertActiveElement(getListboxButton())
+      await assertActiveElement(getListboxButton())
 
       // Open listbox again
       await click(getListboxButton())
 
       // Verify the active option is the previously selected one
-      assertActiveListboxOption(getListboxOptions()[1])
+      await assertActiveListboxOption(getListboxOptions()[1])
     })
   )
 
@@ -3975,15 +3991,15 @@ describe('Mouse interactions', () => {
 
       // Open listbox
       await click(getListboxButton())
-      assertListbox({ state: ListboxState.Visible })
-      assertActiveElement(getListbox())
+      await assertListbox({ state: ListboxState.Visible })
+      await assertActiveElement(getListbox())
 
       let options = getListboxOptions()
 
       // We should be able to click the first option
       await click(options[1])
-      assertListbox({ state: ListboxState.Visible })
-      assertActiveElement(getListbox())
+      await assertListbox({ state: ListboxState.Visible })
+      await assertActiveElement(getListbox())
       expect(handleChange).toHaveBeenCalledTimes(0)
 
       // Close the listbox
@@ -3993,7 +4009,7 @@ describe('Mouse interactions', () => {
       await click(getListboxButton())
 
       // Verify the active option is non existing
-      assertNoActiveListboxOption()
+      await assertNoActiveListboxOption()
     })
   )
 
@@ -4013,17 +4029,17 @@ describe('Mouse interactions', () => {
 
       // Open listbox
       await click(getListboxButton())
-      assertListbox({ state: ListboxState.Visible })
-      assertActiveElement(getListbox())
+      await assertListbox({ state: ListboxState.Visible })
+      await assertActiveElement(getListbox())
 
       let options = getListboxOptions()
 
       // Verify that nothing is active yet
-      assertNoActiveListboxOption()
+      await assertNoActiveListboxOption()
 
       // We should be able to focus the first option
       await focus(options[1])
-      assertActiveListboxOption(options[1])
+      await assertActiveListboxOption(options[1])
     })
   )
 
@@ -4045,14 +4061,14 @@ describe('Mouse interactions', () => {
 
       // Open listbox
       await click(getListboxButton())
-      assertListbox({ state: ListboxState.Visible })
-      assertActiveElement(getListbox())
+      await assertListbox({ state: ListboxState.Visible })
+      await assertActiveElement(getListbox())
 
       let options = getListboxOptions()
 
       // We should not be able to focus the first option
       await focus(options[1])
-      assertNoActiveListboxOption()
+      await assertNoActiveListboxOption()
     })
   )
 })
@@ -4082,14 +4098,14 @@ describe('Multi-select', () => {
       await click(getListboxButton())
 
       // Verify that we have an open listbox with multiple mode
-      assertListbox({ state: ListboxState.Visible, mode: ListboxMode.Multiple })
+      await assertListbox({ state: ListboxState.Visible, mode: ListboxMode.Multiple })
 
       // Verify that we have multiple selected listbox options
       let options = getListboxOptions()
 
-      assertListboxOption(options[0], { selected: false })
-      assertListboxOption(options[1], { selected: true })
-      assertListboxOption(options[2], { selected: true })
+      await assertListboxOption(options[0], { selected: false })
+      await assertListboxOption(options[1], { selected: true })
+      await assertListboxOption(options[2], { selected: true })
     })
   )
 
@@ -4117,7 +4133,7 @@ describe('Multi-select', () => {
       await click(getListboxButton())
 
       // Verify that bob is the active option
-      assertActiveListboxOption(getListboxOptions()[1])
+      await assertActiveListboxOption(getListboxOptions()[1])
     })
   )
 
@@ -4143,13 +4159,13 @@ describe('Multi-select', () => {
 
       // Open listbox
       await click(getListboxButton())
-      assertListbox({ state: ListboxState.Visible })
+      await assertListbox({ state: ListboxState.Visible })
 
       // Verify that bob is the active option
       await click(getListboxOptions()[0])
 
       // Verify that the listbox is still open
-      assertListbox({ state: ListboxState.Visible })
+      await assertListbox({ state: ListboxState.Visible })
     })
   )
 
@@ -4175,27 +4191,27 @@ describe('Multi-select', () => {
 
       // Open listbox
       await click(getListboxButton())
-      assertListbox({ state: ListboxState.Visible })
+      await assertListbox({ state: ListboxState.Visible })
 
       let options = getListboxOptions()
 
-      assertListboxOption(options[0], { selected: false })
-      assertListboxOption(options[1], { selected: true })
-      assertListboxOption(options[2], { selected: true })
+      await assertListboxOption(options[0], { selected: false })
+      await assertListboxOption(options[1], { selected: true })
+      await assertListboxOption(options[2], { selected: true })
 
       // Click on bob
       await click(getListboxOptions()[1])
 
-      assertListboxOption(options[0], { selected: false })
-      assertListboxOption(options[1], { selected: false })
-      assertListboxOption(options[2], { selected: true })
+      await assertListboxOption(options[0], { selected: false })
+      await assertListboxOption(options[1], { selected: false })
+      await assertListboxOption(options[2], { selected: true })
 
       // Click on bob again
       await click(getListboxOptions()[1])
 
-      assertListboxOption(options[0], { selected: false })
-      assertListboxOption(options[1], { selected: true })
-      assertListboxOption(options[2], { selected: true })
+      await assertListboxOption(options[0], { selected: false })
+      await assertListboxOption(options[1], { selected: true })
+      await assertListboxOption(options[2], { selected: true })
     })
   )
 })

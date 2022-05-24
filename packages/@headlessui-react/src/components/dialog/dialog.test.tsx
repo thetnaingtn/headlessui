@@ -65,7 +65,7 @@ describe('Safe guards', () => {
         </Dialog>
       )
 
-      assertDialog({
+      await assertDialog({
         state: DialogState.InvisibleUnmounted,
         attributes: { id: 'headlessui-dialog-1' },
       })
@@ -159,11 +159,14 @@ describe('Rendering', () => {
         }
         render(<Example />)
 
-        assertDialog({ state: DialogState.InvisibleUnmounted })
+        await assertDialog({ state: DialogState.InvisibleUnmounted })
 
         await click(document.getElementById('trigger'))
 
-        assertDialog({ state: DialogState.Visible, textContent: JSON.stringify({ open: true }) })
+        await assertDialog({
+          state: DialogState.Visible,
+          textContent: JSON.stringify({ open: true }),
+        })
       })
     )
 
@@ -219,20 +222,20 @@ describe('Rendering', () => {
       }
       render(<Example />)
 
-      assertDialog({ state: DialogState.InvisibleHidden })
+      await assertDialog({ state: DialogState.InvisibleHidden })
       expect(focusCounter).toHaveBeenCalledTimes(0)
 
       // Let's open the Dialog, to see if it is not hidden anymore
       await click(document.getElementById('trigger'))
       expect(focusCounter).toHaveBeenCalledTimes(1)
 
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
 
       // Let's close the Dialog
       await press(Keys.Escape)
       expect(focusCounter).toHaveBeenCalledTimes(1)
 
-      assertDialog({ state: DialogState.InvisibleHidden })
+      await assertDialog({ state: DialogState.InvisibleHidden })
     })
 
     it(
@@ -294,14 +297,14 @@ describe('Rendering', () => {
 
         render(<Example />)
 
-        assertDialogOverlay({
+        await assertDialogOverlay({
           state: DialogState.InvisibleUnmounted,
           attributes: { id: 'headlessui-dialog-overlay-2' },
         })
 
         await click(document.getElementById('trigger'))
 
-        assertDialogOverlay({
+        await assertDialogOverlay({
           state: DialogState.Visible,
           attributes: { id: 'headlessui-dialog-overlay-2' },
         })
@@ -425,11 +428,11 @@ describe('Rendering', () => {
           </Dialog>
         )
 
-        assertDialog({
+        await assertDialog({
           state: DialogState.Visible,
           attributes: { id: 'headlessui-dialog-1' },
         })
-        assertDialogTitle({
+        await assertDialogTitle({
           state: DialogState.Visible,
           textContent: JSON.stringify({ open: true }),
         })
@@ -448,11 +451,11 @@ describe('Rendering', () => {
           </Dialog>
         )
 
-        assertDialog({
+        await assertDialog({
           state: DialogState.Visible,
           attributes: { id: 'headlessui-dialog-1' },
         })
-        assertDialogDescription({
+        await assertDialogDescription({
           state: DialogState.Visible,
           textContent: JSON.stringify({ open: true }),
         })
@@ -474,8 +477,8 @@ describe('Composition', () => {
         </Transition>
       )
 
-      assertDialog({ state: DialogState.Visible })
-      assertDialogDescription({
+      await assertDialog({ state: DialogState.Visible })
+      await assertDialogDescription({
         state: DialogState.Visible,
         textContent: JSON.stringify({ open: true }),
       })
@@ -494,7 +497,7 @@ describe('Composition', () => {
         </Transition>
       )
 
-      assertDialog({ state: DialogState.InvisibleUnmounted })
+      await assertDialog({ state: DialogState.InvisibleUnmounted })
     })
   )
 })
@@ -520,13 +523,13 @@ describe('Keyboard interactions', () => {
         }
         render(<Example />)
 
-        assertDialog({ state: DialogState.InvisibleUnmounted })
+        await assertDialog({ state: DialogState.InvisibleUnmounted })
 
         // Open dialog
         await click(document.getElementById('trigger'))
 
         // Verify it is open
-        assertDialog({
+        await assertDialog({
           state: DialogState.Visible,
           attributes: { id: 'headlessui-dialog-1' },
         })
@@ -535,7 +538,7 @@ describe('Keyboard interactions', () => {
         await press(Keys.Escape)
 
         // Verify it is close
-        assertDialog({ state: DialogState.InvisibleUnmounted })
+        await assertDialog({ state: DialogState.InvisibleUnmounted })
       })
     )
 
@@ -559,13 +562,13 @@ describe('Keyboard interactions', () => {
         }
         render(<Example />)
 
-        assertDialog({ state: DialogState.InvisibleUnmounted })
+        await assertDialog({ state: DialogState.InvisibleUnmounted })
 
         // Open dialog
         await click(document.getElementById('trigger'))
 
         // Verify it is open
-        assertDialog({
+        await assertDialog({
           state: DialogState.Visible,
           attributes: { id: 'headlessui-dialog-1' },
         })
@@ -574,7 +577,7 @@ describe('Keyboard interactions', () => {
         await press(Keys.Escape)
 
         // Verify it is close
-        assertDialog({ state: DialogState.InvisibleUnmounted })
+        await assertDialog({ state: DialogState.InvisibleUnmounted })
       })
     )
 
@@ -604,13 +607,13 @@ describe('Keyboard interactions', () => {
         }
         render(<Example />)
 
-        assertDialog({ state: DialogState.InvisibleUnmounted })
+        await assertDialog({ state: DialogState.InvisibleUnmounted })
 
         // Open dialog
         await click(document.getElementById('trigger'))
 
         // Verify it is open
-        assertDialog({
+        await assertDialog({
           state: DialogState.Visible,
           attributes: { id: 'headlessui-dialog-1' },
         })
@@ -619,7 +622,7 @@ describe('Keyboard interactions', () => {
         await press(Keys.Escape)
 
         // Verify it is still open
-        assertDialog({ state: DialogState.Visible })
+        await assertDialog({ state: DialogState.Visible })
       })
     )
   })
@@ -646,31 +649,31 @@ describe('Keyboard interactions', () => {
         }
         render(<Example />)
 
-        assertDialog({ state: DialogState.InvisibleUnmounted })
+        await assertDialog({ state: DialogState.InvisibleUnmounted })
 
         // Open dialog
         await click(document.getElementById('trigger'))
 
         // Verify it is open
-        assertDialog({
+        await assertDialog({
           state: DialogState.Visible,
           attributes: { id: 'headlessui-dialog-1' },
         })
 
         // Verify that the input field is focused
-        assertActiveElement(document.getElementById('b'))
+        await assertActiveElement(document.getElementById('b'))
 
         // Verify that we can tab around
         await press(Keys.Tab)
-        assertActiveElement(document.getElementById('a'))
+        await assertActiveElement(document.getElementById('a'))
 
         // Verify that we can tab around
         await press(Keys.Tab)
-        assertActiveElement(document.getElementById('b'))
+        await assertActiveElement(document.getElementById('b'))
 
         // Verify that we can tab around
         await press(Keys.Tab)
-        assertActiveElement(document.getElementById('a'))
+        await assertActiveElement(document.getElementById('a'))
       })
     )
   })
@@ -701,13 +704,13 @@ describe('Mouse interactions', () => {
       await click(document.getElementById('trigger'))
 
       // Verify it is open
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
 
       // Click to close
       await click(getDialogOverlay())
 
       // Verify it is closed
-      assertDialog({ state: DialogState.InvisibleUnmounted })
+      await assertDialog({ state: DialogState.InvisibleUnmounted })
     })
   )
 
@@ -737,13 +740,13 @@ describe('Mouse interactions', () => {
       await click(document.getElementById('trigger'))
 
       // Verify it is open
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
 
       // Click on an element inside the overlay
       await click(getByText('hi'))
 
       // Verify it is still open
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
     })
   )
 
@@ -768,16 +771,16 @@ describe('Mouse interactions', () => {
       await click(getByText('Trigger'))
 
       // Verify it is open
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
 
       // Click the body to close
       await click(document.body)
 
       // Verify it is closed
-      assertDialog({ state: DialogState.InvisibleUnmounted })
+      await assertDialog({ state: DialogState.InvisibleUnmounted })
 
       // Verify the button is focused
-      assertActiveElement(getByText('Trigger'))
+      await assertActiveElement(getByText('Trigger'))
     })
   )
 
@@ -803,16 +806,16 @@ describe('Mouse interactions', () => {
       await click(getByText('Trigger'))
 
       // Verify it is open
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
 
       // Click the button to close (outside click)
       await click(getByText('Hello'))
 
       // Verify it is closed
-      assertDialog({ state: DialogState.InvisibleUnmounted })
+      await assertDialog({ state: DialogState.InvisibleUnmounted })
 
       // Verify the button is focused
-      assertActiveElement(getByText('Hello'))
+      await assertActiveElement(getByText('Hello'))
     })
   )
 
@@ -835,7 +838,7 @@ describe('Mouse interactions', () => {
       render(<Example />)
 
       // Verify it is open
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
 
       // Verify that the wrapper function has not been called yet
       expect(wrapperFn).toHaveBeenCalledTimes(0)
@@ -844,7 +847,7 @@ describe('Mouse interactions', () => {
       await click(getDialogOverlay())
 
       // Verify it is closed
-      assertDialog({ state: DialogState.InvisibleUnmounted })
+      await assertDialog({ state: DialogState.InvisibleUnmounted })
 
       // Verify that the wrapper function has not been called yet
       expect(wrapperFn).toHaveBeenCalledTimes(0)
@@ -870,7 +873,7 @@ describe('Mouse interactions', () => {
       render(<Example />)
 
       // Verify it is open
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
 
       // Submit the form
       await click(getByText('Submit'))
@@ -901,7 +904,7 @@ describe('Mouse interactions', () => {
       render(<Example />)
 
       // Verify it is open
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
 
       // Verify that the wrapper function has not been called yet
       expect(wrapperFn).toHaveBeenCalledTimes(0)
@@ -910,7 +913,7 @@ describe('Mouse interactions', () => {
       await click(getByText('Inside'))
 
       // Verify it is closed
-      assertDialog({ state: DialogState.InvisibleUnmounted })
+      await assertDialog({ state: DialogState.InvisibleUnmounted })
 
       // Verify that the wrapper function has not been called yet
       expect(wrapperFn).toHaveBeenCalledTimes(0)
@@ -944,13 +947,13 @@ describe('Mouse interactions', () => {
       render(<Example />)
 
       // Verify it is open
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
 
       // Click the button inside the the Dialog
       await click(getByText('Inside'))
 
       // Verify it is still open
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
     })
   )
 
@@ -988,7 +991,7 @@ describe('Mouse interactions', () => {
       render(<Example />)
 
       // Verify it is open
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
 
       // Click the button inside the 3rd party library
       await click(document.querySelector('[data-lib]'))
@@ -997,7 +1000,7 @@ describe('Mouse interactions', () => {
       expect(fn).toHaveBeenCalledTimes(1)
 
       // Verify the dialog is still open
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
     })
   )
 
@@ -1026,11 +1029,11 @@ describe('Mouse interactions', () => {
 
       await click(document.getElementById('trigger'))
 
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
 
       await click(document.getElementById('outside'))
 
-      assertDialog({ state: DialogState.InvisibleUnmounted })
+      await assertDialog({ state: DialogState.InvisibleUnmounted })
     })
   )
 
@@ -1059,11 +1062,11 @@ describe('Mouse interactions', () => {
 
       await click(document.getElementById('trigger'))
 
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
 
       await click(document.getElementById('inside'))
 
-      assertDialog({ state: DialogState.Visible })
+      await assertDialog({ state: DialogState.Visible })
     })
   )
 })
@@ -1118,19 +1121,19 @@ describe('Nesting', () => {
       expect(getDialogs()).toHaveLength(1)
 
       // Verify that the `Open 2 a` has focus
-      assertActiveElement(getByText('Open 2 a'))
+      await assertActiveElement(getByText('Open 2 a'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 2 b'))
+      await assertActiveElement(getByText('Open 2 b'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 2 c'))
+      await assertActiveElement(getByText('Open 2 c'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 2 a'))
+      await assertActiveElement(getByText('Open 2 a'))
 
       // Open Dialog 2 via the second button
       await click(getByText('Open 2 b'))
@@ -1139,19 +1142,19 @@ describe('Nesting', () => {
       expect(getDialogs()).toHaveLength(2)
 
       // Verify that the `Open 3 a` has focus
-      assertActiveElement(getByText('Open 3 a'))
+      await assertActiveElement(getByText('Open 3 a'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 3 b'))
+      await assertActiveElement(getByText('Open 3 b'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 3 c'))
+      await assertActiveElement(getByText('Open 3 c'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 3 a'))
+      await assertActiveElement(getByText('Open 3 a'))
 
       // Close the top most Dialog
       await action()
@@ -1160,37 +1163,37 @@ describe('Nesting', () => {
       expect(getDialogs()).toHaveLength(1)
 
       // Verify that the `Open 2 b` button got focused again
-      assertActiveElement(getByText('Open 2 b'))
+      await assertActiveElement(getByText('Open 2 b'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 2 c'))
+      await assertActiveElement(getByText('Open 2 c'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 2 a'))
+      await assertActiveElement(getByText('Open 2 a'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 2 b'))
+      await assertActiveElement(getByText('Open 2 b'))
 
       // Open Dialog 2 via button b
       await click(getByText('Open 2 b'))
 
       // Verify that the `Open 3 a` has focus
-      assertActiveElement(getByText('Open 3 a'))
+      await assertActiveElement(getByText('Open 3 a'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 3 b'))
+      await assertActiveElement(getByText('Open 3 b'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 3 c'))
+      await assertActiveElement(getByText('Open 3 c'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 3 a'))
+      await assertActiveElement(getByText('Open 3 a'))
 
       // Verify that we have 2 open dialogs
       expect(getDialogs()).toHaveLength(2)
@@ -1199,19 +1202,19 @@ describe('Nesting', () => {
       await click(getByText('Open 3 c'))
 
       // Verify that the `Open 4 a` has focus
-      assertActiveElement(getByText('Open 4 a'))
+      await assertActiveElement(getByText('Open 4 a'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 4 b'))
+      await assertActiveElement(getByText('Open 4 b'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 4 c'))
+      await assertActiveElement(getByText('Open 4 c'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 4 a'))
+      await assertActiveElement(getByText('Open 4 a'))
 
       // Verify that we have 3 open dialogs
       expect(getDialogs()).toHaveLength(3)
@@ -1220,19 +1223,19 @@ describe('Nesting', () => {
       await action()
 
       // Verify that the `Open 3 c` button got focused again
-      assertActiveElement(getByText('Open 3 c'))
+      await assertActiveElement(getByText('Open 3 c'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 3 a'))
+      await assertActiveElement(getByText('Open 3 a'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 3 b'))
+      await assertActiveElement(getByText('Open 3 b'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 3 c'))
+      await assertActiveElement(getByText('Open 3 c'))
 
       // Verify that we have 2 open dialogs
       expect(getDialogs()).toHaveLength(2)
@@ -1244,19 +1247,19 @@ describe('Nesting', () => {
       expect(getDialogs()).toHaveLength(1)
 
       // Verify that the `Open 2 b` button got focused again
-      assertActiveElement(getByText('Open 2 b'))
+      await assertActiveElement(getByText('Open 2 b'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 2 c'))
+      await assertActiveElement(getByText('Open 2 c'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 2 a'))
+      await assertActiveElement(getByText('Open 2 a'))
 
       // Verify that we can tab around
       await press(Keys.Tab)
-      assertActiveElement(getByText('Open 2 b'))
+      await assertActiveElement(getByText('Open 2 b'))
 
       // Close the top most Dialog
       await action()
@@ -1265,7 +1268,7 @@ describe('Nesting', () => {
       expect(getDialogs()).toHaveLength(0)
 
       // Verify that the `Open 1` button got focused again
-      assertActiveElement(getByText('Open 1'))
+      await assertActiveElement(getByText('Open 1'))
     }
   )
 })
