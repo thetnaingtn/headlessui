@@ -204,6 +204,14 @@ function mergeProps(...listOfProps: Props<any, any>[]) {
     ((event: { defaultPrevented: boolean }, ...args: any[]) => void | undefined)[]
   > = {}
 
+  /**
+   * eventHandlers
+   * {
+   *    onClick:[handleClick],
+   *    onChange:[handleChange]
+   * }
+   */
+
   for (let props of listOfProps) {
     for (let prop in props) {
       // Collect event handlers
@@ -216,6 +224,19 @@ function mergeProps(...listOfProps: Props<any, any>[]) {
       }
     }
   }
+
+  /**
+   * Object.keys(eventHandlers)
+   * [onClick, onChange]
+   * map...
+   * [[onClick, undefined], [onChange, undefined]]
+   * fromEntries...
+   * {
+   *  onClick:undefined
+   *  onChange:undefined
+   * }
+   *
+   */
 
   // Do not attach any event handlers when there is a `disabled` or `aria-disabled` prop set.
   if (target.disabled || target['aria-disabled']) {
