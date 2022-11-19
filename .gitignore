@@ -17,6 +17,7 @@
 /packages/**/.next/
 /out/
 /packages/**/out/
+/apps/**/.next/
 
 # production
 /build
