@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "react": "yarn workspace @headlessui/react",
-    "react-playground": "yarn workspace playground-react dev",
+    "react-playground": "turbo run dev",
     "playground-react": "yarn workspace playground-react dev",
     "vue": "yarn workspace @headlessui/vue",
     "playground-vue": "yarn workspace playground-vue dev",
